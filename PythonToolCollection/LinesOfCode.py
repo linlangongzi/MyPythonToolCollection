@@ -9,10 +9,10 @@ def get_commit_stats(commit):
     with Popen(command, stdout=PIPE, stderr=PIPE) as process:
         output, err = process.communicate()
         if err:
-            return None;
+            return None
         stats = output.decode("utf-8").strip().split("\n")
-        added = sum(int(line.split()[0]) for line in stats if line.startswith("+"))
-        removed = sum(int(line.split()[0]) for line in stats if line.startswith("-"))
+        added = sum(int(line.split()[0]) for line in stats if line.startswith("+") and line.split()[0].isdigit())
+        removed = sum(int(line.split()[0]) for line in stats if line.startswith("-") and line.split()[0].isdigit())
         return added, removed
 
 def main():
@@ -31,4 +31,5 @@ def main():
     print("Total lines of Committed: ", total_added + total_removed)
 
 if __name__ == "__main__":
+    print("NOT Working")
     main()
