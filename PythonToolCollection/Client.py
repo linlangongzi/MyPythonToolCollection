@@ -44,6 +44,7 @@ def create_tcp_client(server_ip, server_port):
             break  # Exit the outer loop if 'exit' command is given
         except Exception as e:
             print(f"An error occurred: {e}")
+            print(f"Error details: {str(e)}")  # More detailed error reporting
         finally:
             print("Closing socket.")
             sock.close()
